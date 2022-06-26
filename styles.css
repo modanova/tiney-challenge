@@ -5,6 +5,7 @@
     --dark-pink: rgb(243, 114, 131);
     --light-pink:  rgb(255, 234, 230);
     --gray: rgb(151, 151, 151);
+    --light-gray: rgb(229 229 229);
     --dark-gray: rgb(110, 110, 110);
     --purple: #5e5f93;
     
@@ -26,7 +27,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-
+}
+main {
+    background-color: black;
+    padding: 15px;
+    border-radius: 25px;
 }
 
 body, * {
@@ -34,6 +39,11 @@ body, * {
     font-family: 'Mulish', sans-serif;
     font-weight: 400;
     color: var(--gray);
+    background-color: white;
+}
+
+nav {
+    background-color: var(--light-gray);
 }
 
 .container {
@@ -44,6 +54,10 @@ body, * {
     height: 100vh;
 }
 
+.round {
+    border-radius: var(--radius);
+}
+
 .full-wdth {
     width: 100%;
 }
@@ -51,12 +65,20 @@ body, * {
 .padding {
     padding: 5px 10px;
 }
+
 .padding-lg {
     padding: 15px 5px;
 }
 
 .tabs {
     justify-content: space-around;
+}
+.tab-item {
+    width: 100%;
+    border-bottom: 5px solid var(--light-gray);
+}
+.tab-active {
+    border-bottom: 5px solid var(--dark-blue);
 }
 
 /* Register */
@@ -76,7 +98,7 @@ body, * {
 }
 
 .inactive {
-    color: var(--gray);
+    color: var(--dark-gray);
 }
 
 .flex {
@@ -98,6 +120,11 @@ body, * {
 
 .fa-arrow-left-long {
     position: absolute;
+}
+
+.fa-circle-info {
+    position: relative;
+    left: 0;
 }
 
 .template-pupil {
