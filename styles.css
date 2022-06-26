@@ -148,7 +148,7 @@ body, * {
 
 .grid {
     display: grid;
-    grid-template-rows: 1fr 1fr 1fr 15fr 2fr;
+    grid-template-rows: 1fr 1fr 1fr 12fr 1fr;
 }
 
 .grid-three {
