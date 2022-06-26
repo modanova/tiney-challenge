@@ -187,7 +187,7 @@ nav {
 
 .grid-sign-in {
     display: grid;
-    grid-template-rows: 1fr 11fr;
+    grid-template-rows: 1fr 12fr;
 }
 
 .avatar {
