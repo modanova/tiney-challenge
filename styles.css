@@ -136,6 +136,10 @@ nav {
     color: var(--dark-blue);
 }
 
+.txt-pink {
+    color: var(--dark-pink);
+}
+
 .box-purple {
     border-radius: var(--radius);
     background-color: var(--dark-blue-fade);
@@ -154,9 +158,7 @@ nav {
 
 .btn-inactive {
     color: var(--dark-pink);
-    border: 10px solid;
-    border-image-slice: 1;
-    border-width: 2px;
+    border: 2px solid var(--dark-pink);
 }
 
 
@@ -245,4 +247,38 @@ nav {
 
   .confirm-box > *>* {
     padding: 10px 10px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .open {
+    display: block;
+  }
+
+.btn-date-time {
+    border: 2px solid var(--dark-gray);
+    height: 56px;
+    border-radius: 8px;
+    align-items: center;
+    justify-content: space-around;
+}
+.btn-date-time > * {
+    font-size: 1rem;
+    color: var(--dark-blue);
+}
+
+  .btn-confirm {
+    height: 56px;
+    width: 80%;
+    background: 
+    linear-gradient(var(--dark-pink), var(--dark-pink)) padding-box,
+    linear-gradient(to right, rgb(255, 162, 174), rgb(255, 183, 192)) border-box;
+    border-radius: 15px;
+    border: 4px solid transparent;
+    color: white;
+    font-size: 1em;
+    margin-left: auto;
+    margin-right: auto;
   }
