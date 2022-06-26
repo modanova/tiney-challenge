@@ -1,8 +1,52 @@
-body {
-    max-width: 100%;
+/* Config */
+:root {
+    --dark-blue: rgb(71, 70, 118);
+    --light-pink: rgb(243, 114, 131);
+    --dark-pink:  rgb(255, 234, 230);
+    --gray: rgb(151, 151, 151);
+    --dark-gray: rgb(110, 110, 110);
+    --purple: rgb(119, 121, 151);
+    --overlay: var(--dark-pink);
+    --radius: 10px;
+
+    --primary-color: var(--gray);
+    --secondary-color: var(--dark-pink);
+    --secondary-color-light: var(--light-pink);
+    --text: var(--gray);
+    --text-bold: var(--gray);
 }
+
+*,
+*::after,
+*::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+
+}
+
+body, * {
+    max-width: 100%;
+    font-family: 'Mulish', sans-serif;
+    font-weight: 400;
+    color: var(--gray);
+}
+
 div {
     width: 100%;
+}
+
+.fnt-bold {
+    font-weight: 800;
+    color: var(--dark-blue);
+}
+
+.fnt__dark-blue {
+    color: var(--dark-blue);
+}
+
+.inactive {
+    color: var(--gray);
 }
 
 .flex {
@@ -16,4 +60,8 @@ div {
 
 .txt-center {
     text-align: center;
+}
+
+.txt-blue {
+    color: --dark-blue;
 }
