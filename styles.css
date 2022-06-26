@@ -29,9 +29,7 @@
     box-sizing: border-box;
 }
 main {
-    background-color: black;
     padding: 15px;
-    border-radius: 25px;
 }
 
 body, * {
@@ -39,7 +37,6 @@ body, * {
     font-family: 'Mulish', sans-serif;
     font-weight: 400;
     color: var(--gray);
-    background-color: white;
 }
 
 nav {
@@ -142,6 +139,9 @@ nav {
 .box-purple {
     border-radius: var(--radius);
     background-color: var(--dark-blue-fade);
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .btn {
