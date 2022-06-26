@@ -1,0 +1,19 @@
+body {
+    max-width: 100%;
+}
+div {
+    width: 100%;
+}
+
+.flex {
+    display: flex;
+    justify-items: center;
+}
+
+.template-pupil {
+    display: none;
+}
+
+.txt-center {
+    text-align: center;
+}

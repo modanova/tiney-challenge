@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <meta name="description" content="A tiney registry"/>
+        <link rel="stylesheet" href="styles.css" />
+        <title>Tiney Register</title>   
+    </head>
+    <body>
+      <!-- Nav-bar-->
+        <nav class="flex">
+            <i></i>
+            <div>
+                tiney register
+            </div>
+        </nav>
+      
+      <!-- Tabs -->
+      <div class="flex">
+        <div class="txt-center">Daily log</div>
+        <div class="txt-center">History</div>
+      </div>
+
+      <!-- Total -->
+        <div> You have <span>0</span> children in today</div>
+
+      <!-- Register -->
+        <section class="register">
+            <div class="pupil flex">
+                <div class="flex">
+                    <img>
+                    <i class="online"></i>
+                </div>
+                <div class="info">
+                    <p>John Doe</p>
+                    <p>Signed in at <time>8:59</time></p>
+                </div>
+                <div>
+                    <button class="sign-out">Sign out</button>
+                </div>
+            </div>
+        </section>
+        
+        
+        <!-- Template for pupil -->
+        <template class="template-pupil">
+            <div>
+                <img>
+                <i class="online"></i>
+            </div>
+            <div class="info">
+                <p>First Second</p>
+                <p>Signed in at <time>0:00</time></p>
+            </div>
+            <div>
+                <button class="sign-out">Sign out</button>
+            </div>
+        </template>
+
+    </body>
+</html>
