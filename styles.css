@@ -1,19 +1,23 @@
 /* Config */
 :root {
     --dark-blue: rgb(71, 70, 118);
-    --light-pink: rgb(243, 114, 131);
-    --dark-pink:  rgb(255, 234, 230);
+    --dark-blue-fade: #b1b2ff5e;
+    --dark-pink: rgb(243, 114, 131);
+    --light-pink:  rgb(255, 234, 230);
     --gray: rgb(151, 151, 151);
     --dark-gray: rgb(110, 110, 110);
-    --purple: rgb(119, 121, 151);
-    --overlay: var(--dark-pink);
-    --radius: 10px;
+    --purple: #5e5f93;
+    
 
-    --primary-color: var(--gray);
-    --secondary-color: var(--dark-pink);
-    --secondary-color-light: var(--light-pink);
+    --primary-background: var(--gray);
+    --secondary-background: var(--dark-gray);
+    
     --text: var(--gray);
-    --text-bold: var(--gray);
+
+    --text-btn: white;
+    --btn-background: var(--light-pink);
+    --border: var(--light-pink);
+    --radius: 10px;
 }
 
 *,
@@ -21,7 +25,7 @@
 *::before {
     margin: 0;
     padding: 0;
-    box-sizing: inherit;
+    box-sizing: border-box;
 
 }
 
@@ -64,4 +68,30 @@ div {
 
 .txt-blue {
     color: --dark-blue;
+}
+
+.box-purple {
+    border-radius: var(--radius);
+    background-color: var(--dark-blue-fade);
+}
+
+.btn {
+    height: 35px;
+    min-width: 70px;
+    border-radius: var(--radius);
+    border: none;
+    background: none;
+}
+
+.btn-inactive {
+    color: var(--dark-pink);
+    border: 10px solid;
+    border-image-slice: 1;
+    border-width: 2px;
+}
+
+
+.btn-active {
+    background-color: var(--dark-pink);
+    color: white;
 }
