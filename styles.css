@@ -28,9 +28,6 @@
     padding: 0;
     box-sizing: border-box;
 }
-main {
-    padding: 15px;
-}
 
 body, * {
     max-width: 100%;
@@ -181,4 +178,9 @@ nav {
 .grid-three {
     display: grid;
     grid-template-columns: 1fr 5fr 1.5fr;
+}
+
+.avatar {
+    max-height: 80px;
+    max-width: 80px;
 }
