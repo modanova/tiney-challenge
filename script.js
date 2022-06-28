@@ -24,7 +24,10 @@ const createPupilElement = (pupil) => {
     // Create a div from the template with class 'template-pupil'
     const template = document.querySelector('.template-pupil');
     const newPupil = template.content.cloneNode(true);
+    // get picture
     newPupil.querySelector(".img-pupil").src = pupil.avatar;
+    // get name
+    newPupil.querySelector(".name-pupil").innerHTML = pupil.name;
     return newPupil;
 }
 
@@ -69,17 +72,17 @@ const loadPupils = async () => {
 }
 
 const main = async () => {
-    // register.replaceChildren(); // remove all default elements, or remove them from the html manually
+    register.replaceChildren();
     // 1. Load all pupils
     const pupils = await loadPupils();
     // 2. Loop through all pupils and create their elements
     const elements = pupils.map(createPupilElement);
     // TODO: 3. Append those elements
     elements.forEach((el) => {
-        // const hr = document.createElement("hr");
-        // register.appendChild(hr);
-        // register.appendChild(el);
-    });
+        const hr = document.createElement("hr");
+        register.appendChild(hr);
+        register.appendChild(el);
+    }); 
     // TODO: 4. Add event listeners to all Sign-in/Sign out buttons
     // const signIns = document.getElementsByClassName("sign-in");
     // const signOuts = document.getElementsByClassName("sign-out");
