@@ -13,7 +13,6 @@
     />
     <link rel="stylesheet" href="styles.css" />
     <title>Tiney Register</title>
-    <script src="script.js"></script>
   </head>
   <body>
     <main class="container grid center">
@@ -35,11 +34,12 @@
 
       <!-- Total -->
       <div class="padding txt-center align-center">
-        You have <span class="total">0</span> children expected in today
+        You have <span id="total" class="total">0</span> children expected in today
       </div>
 
       <!-- Register -->
-      <section class="register scroll">
+      <section id="register" class="register scroll">
+        <!--
         <hr />
         <div class="pupil grid-three">
           <div class="flex">
@@ -187,6 +187,7 @@
           <div class="align-center"></div>
         </div>
         <hr />
+      -->
       </section>
 
       <!-- End of register-->
@@ -207,7 +208,7 @@
       </div>
     </main>
 
-    <modal class="modal">
+    <modal class="modal hidden">
       <!-- Modal content -->
       <div class="modal-content container center grid-sign-in">
         <!-- Nav-bar-->
@@ -268,22 +269,23 @@
     <!-- Template for pupil -->
     <template class="template-pupil">
       <div class="pupil grid-three">
-        <div class="flex">
-          <img src="avatar/14762.jpg" class="avatar" />
-          <i class="txt-blue online"></i>
+          <div class="flex">
+            <img src="avatar/avt9.jpg" class="avatar img-pupil" />
+            <i class="txt-blue online"></i>
+          </div>
+          <div class="info padding-lg">
+            <p class="name-pupil fnt-bold">John Doe</p>
+            <p>Signed out <time></time></p>
+          </div>
+          <div class="align-center">
+            <button type="submit"  class="sign-in btn btn-active fnt-bold">Sign in</button>
+          </div>
         </div>
-        <div class="info padding-lg">
-          <p class="fnt-bold">John Doe</p>
-          <p>Signed in at <time>8:59</time></p>
-        </div>
-        <div>
-          <button type="submit"  class="sign-out btn btn-inactive fnt-bold">Sign out</button>
-        </div>
-      </div>
     </template>
   </body>
   <script
     src="https://kit.fontawesome.com/2e59e30a69.js"
     crossorigin="anonymous"
   ></script>
+  <script src="script.js"></script>
 </html>
