@@ -24,14 +24,20 @@ const createPupilElement = (pupil) => {
     // Create a div from the template with class 'template-pupil'
     const template = document.querySelector('.template-pupil');
     const newPupil = template.content.cloneNode(true);
-    // get picture
-    newPupil.querySelector(".img-pupil").src = pupil.avatar;
-    // get name
+    // Get name
     newPupil.querySelector(".name-pupil").innerHTML = pupil.name;
+    // Get picture
+    newPupil.querySelector(".img-pupil").src = pupil.avatar;
     return newPupil;
 }
 
 const signIn = (event) => {
+    // Hide sign-in, show sign-out button
+    const btn_sign_in = event.target;
+    btn_sign_in.classList.add("hidden");
+
+    const btn_sign_out = btn_sign_in.parentElement.querySelector(".sign-out");
+    btn_sign_out.classList.remove("hidden");
     // TODO: Open the confirm sign-in modal and populate all the data
 }
 
@@ -50,6 +56,11 @@ const reportAbsent = (event) => {
 }
 
 const signOut = (event) => {
+    const btn_sign_out = event.target;
+    btn_sign_out.classList.add("hidden");
+
+    const btn_sign_in = btn_sign_out.parentElement.querySelector(".sign-in");
+    btn_sign_in.classList.remove("hidden");
     // TODO: Mark the student as signed out and update its element
     // TODO: hide signOut and show signIn or whatever needs to be shown
     // savePupils(...)
@@ -77,16 +88,24 @@ const main = async () => {
     const pupils = await loadPupils();
     // 2. Loop through all pupils and create their elements
     const elements = pupils.map(createPupilElement);
-    // TODO: 3. Append those elements
+    // 3. Append those elements
     elements.forEach((el) => {
         const hr = document.createElement("hr");
         register.appendChild(hr);
         register.appendChild(el);
-    }); 
+    });
     // TODO: 4. Add event listeners to all Sign-in/Sign out buttons
-    // const signIns = document.getElementsByClassName("sign-in");
-    // const signOuts = document.getElementsByClassName("sign-out");
+    const signIns = document.getElementsByClassName("sign-in");
+    const signOuts = document.getElementsByClassName("sign-out");
     // ... forEach(x => x.addEventListener('click', signIn/singOut))
+
+    for (btn of signIns) {
+        btn.addEventListener('click', signIn);
+    }
+    for (btn of signOuts) {
+        btn.addEventListener('click', signOut);
+    }
+    
 }
 
 main();
