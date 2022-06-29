@@ -1,11 +1,16 @@
 const modal_signIn = document.querySelector("#modal");
 const modal_close = document.querySelector(".close");
+const confirm__signIn = document.querySelector("#confirm__sign-in");
 
-
+// Open or close the sign in pop-up
 const openCloseSignIn = () => {
     modal_signIn.classList.toggle('hidden');
 }
 modal_close.addEventListener('click', openCloseSignIn);
+confirm__signIn.addEventListener('click', () => {
+    openCloseSignIn();
+});
+// 
 
 // let btn = document.getElementById("submit");
 // let span = document.getElementsByClassName("close");
@@ -36,20 +41,21 @@ const createPupilElement = (pupil) => {
     newPupil.querySelector(".name-pupil").innerHTML = pupil.name;
     // Get picture
     newPupil.querySelector(".img-pupil").src = pupil.avatar;
+    // Get id 
+    newPupil.querySelector("#id100").id = "id" + pupil.id;
     return newPupil;
 }
 
 const signIn = (event) => {
-    // Hide sign-in, show sign-out button
-    const btn_sign_in = event.target;
-    btn_sign_in.classList.add("hidden");
-
-
-    // TODO: Open the confirm sign-in modal and populate all the data
+    // 1. Open the confirm sign-in modal
     openCloseSignIn();
-
-    const btn_sign_out = btn_sign_in.parentElement.querySelector(".sign-out");
-    btn_sign_out.classList.remove("hidden");
+    // 2. Populate all the data
+    // 3. If confirmed is clicked, hide sing-in buttton and show sign out button
+    // TODO 
+    // const btn_sign_in = event.target;
+    // btn_sign_in.classList.add("hidden");
+    // const btn_sign_out = btn_sign_in.parentElement.querySelector(".sign-out");
+    // btn_sign_out.classList.remove("hidden");
 }
 
 const confirmSignIn = (event) => {
