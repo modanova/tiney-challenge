@@ -76,12 +76,9 @@
               <h3 class="txt-blue align-center ">Are you sure you want to sign in <span id="modalName" class="txt-blue fnt-bold">John Doe</span>?</h3>
             </div>
             <div>
-              <p>Date and time</p>
-              <button type="submit"  class="btn-date-time flex full-wdth">
-                <date>Mon 26 October</date>
-                <time>9:41 AM</time>
-                <i class="fa-solid fa-angle-down"></i>
-              </button>
+              <p>Check-in time</p>
+              <input id="check-in-time" type="time" class="btn-date-time txt-center flex full-wdth">
+              </input>
             </div>
             <div>
               <p>
@@ -126,7 +123,7 @@
           </div>
           <div class="info padding-lg">
             <p class="name-pupil fnt-bold">John Doe</p>
-            <p>Signed out <time></time></p>
+            <p><span class=" signed-out">Signed out</span><span class="hidden signed-in">Signed in at</span> <time></time></p>
           </div>
           <div class="align-center">
             <button type="button" id="id0" class="sign-in btn btn-active fnt-bold">Sign in</button>

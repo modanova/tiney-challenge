@@ -1,14 +1,12 @@
-const modalSignIn = document.querySelector("#modal");
+const modal = document.querySelector("#modal");
 const modalClose = document.querySelector(".close");
 const confirmSignInBtn = document.querySelector("#confirm__sign-in");
-const modalName = document.querySelector("#modalName");
-const modalImg = document.querySelector("#thisPupil");
 
 let beeRoom = null;
 
 // Open or close the sign in pop-up
 const toggleModal = () => {
-    modalSignIn.classList.toggle('hidden');
+    modal.classList.toggle('hidden');
 }
 // 
 
@@ -33,6 +31,11 @@ const toggleModal = () => {
 const register = document.getElementById("register");
 const totalCounter = document.getElementById("total");
 
+const getPupilById = (id) => {
+    const pupilIdx = beeRoom.findIndex(pupil => pupil.id === id);
+    return beeRoom[pupilIdx];
+}
+
 const createPupilElement = (pupil) => {
     // Create a div from the template with class 'template-pupil'
     const template = document.querySelector('.template-pupil');
@@ -43,19 +46,30 @@ const createPupilElement = (pupil) => {
     newPupil.querySelector(".img-pupil").src = pupil.avatar;
     // Get id 
     newPupil.querySelector("#id0").id = pupil.id;
+    if ("signedIn" in pupil) {
+        newPupil.querySelector(".sign-in").classList.add("hidden");
+        newPupil.querySelector(".sign-out").classList.remove("hidden");
+        newPupil.querySelector(".signed-in").classList.remove("hidden");
+        newPupil.querySelector(".signed-out").classList.add("hidden");
+        newPupil.querySelector("time").innerHTML = pupil.signedIn;
+    }
     return newPupil;
 }
 
 const signIn = (event) => {
-    // 1. Open the confirm sign-in modal
+    const modalName = modal.querySelector("#modalName");
+    const modalImg = modal.querySelector("#thisPupil");
+    const modalTime = modal.querySelector('#check-in-time');
+    const now = new Date();
+    // 1. Populate all the data
+    const pupil = getPupilById(event.target.id);
+
+    confirmSignInBtn.setAttribute('data-id', pupil.id);
+    modalName.innerHTML = pupil.name;
+    modalImg.src = pupil.avatar;
+    modalTime.value = now.getHours() + ":" + now.getMinutes();
+    // 2. Open the confirm sign-in modal
     toggleModal();
-    // 2. Populate all the data
-    const pupilIdx = beeRoom.findIndex(pupil => pupil.id === event.target.id);
-    const thisPupil = beeRoom[pupilIdx];
-    confirmSignInBtn.setAttribute('data-id', thisPupil.id);
-    modalName.innerHTML = thisPupil.name;
-    modalImg.src = thisPupil.avatar;
-    // - input current time
     // 3. If confirmed is clicked, hide sing-in buttton and show sign out button
     // TODO 
     // const btn_sign_in = event.target;
@@ -65,11 +79,20 @@ const signIn = (event) => {
 }
 
 const confirmSignIn = (event) => {
+    const pupil = getPupilById(event.target.getAttribute('data-id'));
+    const modalTime = modal.querySelector('#check-in-time');
+    const pupilElement = document.getElementById(pupil.id).parentElement.parentElement;
     // TODO: Mark the student as signed in and update its element
-    // TODO: hide signIn and show signOut
-    // TODO: hide the modal
+    pupil['signedIn'] = modalTime.value;
+    // Hide signIn and show signOut
+    pupilElement.querySelector(".sign-in").classList.add("hidden");
+    pupilElement.querySelector(".sign-out").classList.remove("hidden");
+    pupilElement.querySelector(".signed-in").classList.remove("hidden");
+    pupilElement.querySelector(".signed-out").classList.add("hidden");
+    pupilElement.querySelector("time").innerHTML = modalTime.value;
+    // Hide the modal
     toggleModal();
-    // savePupils(...)
+    savePupils(beeRoom);
 }
 
 const reportAbsent = (event) => {
