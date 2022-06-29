@@ -1,15 +1,15 @@
-const modal_signIn = document.querySelector("#modal");
-const modal_close = document.querySelector(".close");
-const confirm__signIn = document.querySelector("#confirm__sign-in");
+const modalSignIn = document.querySelector("#modal");
+const modalClose = document.querySelector(".close");
+const confirmSignInBtn = document.querySelector("#confirm__sign-in");
+const modalName = document.querySelector("#modalName");
+const modalImg = document.querySelector("#thisPupil");
+
+let beeRoom = null;
 
 // Open or close the sign in pop-up
-const openCloseSignIn = () => {
-    modal_signIn.classList.toggle('hidden');
+const toggleModal = () => {
+    modalSignIn.classList.toggle('hidden');
 }
-modal_close.addEventListener('click', openCloseSignIn);
-confirm__signIn.addEventListener('click', () => {
-    openCloseSignIn();
-});
 // 
 
 // let btn = document.getElementById("submit");
@@ -42,14 +42,20 @@ const createPupilElement = (pupil) => {
     // Get picture
     newPupil.querySelector(".img-pupil").src = pupil.avatar;
     // Get id 
-    newPupil.querySelector("#id100").id = "id" + pupil.id;
+    newPupil.querySelector("#id0").id = pupil.id;
     return newPupil;
 }
 
 const signIn = (event) => {
     // 1. Open the confirm sign-in modal
-    openCloseSignIn();
+    toggleModal();
     // 2. Populate all the data
+    const pupilIdx = beeRoom.findIndex(pupil => pupil.id === event.target.id);
+    const thisPupil = beeRoom[pupilIdx];
+    confirmSignInBtn.setAttribute('data-id', thisPupil.id);
+    modalName.innerHTML = thisPupil.name;
+    modalImg.src = thisPupil.avatar;
+    // - input current time
     // 3. If confirmed is clicked, hide sing-in buttton and show sign out button
     // TODO 
     // const btn_sign_in = event.target;
@@ -62,6 +68,7 @@ const confirmSignIn = (event) => {
     // TODO: Mark the student as signed in and update its element
     // TODO: hide signIn and show signOut
     // TODO: hide the modal
+    toggleModal();
     // savePupils(...)
 }
 
@@ -102,9 +109,9 @@ const loadPupils = async () => {
 const main = async () => {
     register.replaceChildren();
     // 1. Load all pupils
-    const pupils = await loadPupils();
+    beeRoom = await loadPupils();
     // 2. Loop through all pupils and create their elements
-    const elements = pupils.map(createPupilElement);
+    const elements = beeRoom.map(createPupilElement);
     // 3. Append those elements
     elements.forEach((el) => {
         const hr = document.createElement("hr");
@@ -114,8 +121,8 @@ const main = async () => {
     // TODO: 4. Add event listeners to all Sign-in/Sign out buttons
     const signIns = document.getElementsByClassName("sign-in");
     const signOuts = document.getElementsByClassName("sign-out");
-    // ... forEach(x => x.addEventListener('click', signIn/singOut))
 
+    // Initialise all event listeners
     for (btn of signIns) {
         btn.addEventListener('click', signIn);
     }
@@ -123,6 +130,8 @@ const main = async () => {
         btn.addEventListener('click', signOut);
     }
     
+    modalClose.addEventListener('click', toggleModal);
+    confirmSignInBtn.addEventListener('click', confirmSignIn);
 }
 
 main();
