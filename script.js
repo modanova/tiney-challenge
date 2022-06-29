@@ -1,6 +1,7 @@
 const modal = document.querySelector("#modal");
 const modalClose = document.querySelector(".close");
 const confirmSignInBtn = document.querySelector("#confirm__sign-in");
+const reportAbsentBtn = document.querySelector("#report_absent");
 
 let beeRoom = null;
 
@@ -40,12 +41,14 @@ const createPupilElement = (pupil) => {
     // Create a div from the template with class 'template-pupil'
     const template = document.querySelector('.template-pupil');
     const newPupil = template.content.cloneNode(true);
+    newPupil.firstElementChild.id = pupil.id;
     // Get name
     newPupil.querySelector(".name-pupil").innerHTML = pupil.name;
     // Get picture
     newPupil.querySelector(".img-pupil").src = pupil.avatar;
     // Get id 
-    newPupil.querySelector("#id0").id = pupil.id;
+    newPupil.querySelector(".sign-in").setAttribute('data-id', pupil.id);
+    newPupil.querySelector(".sign-out").setAttribute('data-id', pupil.id);
     if ("signedIn" in pupil) {
         newPupil.querySelector(".sign-in").classList.add("hidden");
         newPupil.querySelector(".sign-out").classList.remove("hidden");
@@ -62,7 +65,7 @@ const signIn = (event) => {
     const modalTime = modal.querySelector('#check-in-time');
     const now = new Date();
     // 1. Populate all the data
-    const pupil = getPupilById(event.target.id);
+    const pupil = getPupilById(event.target.getAttribute("data-id"));
 
     confirmSignInBtn.setAttribute('data-id', pupil.id);
     modalName.innerHTML = pupil.name;
@@ -81,7 +84,7 @@ const signIn = (event) => {
 const confirmSignIn = (event) => {
     const pupil = getPupilById(event.target.getAttribute('data-id'));
     const modalTime = modal.querySelector('#check-in-time');
-    const pupilElement = document.getElementById(pupil.id).parentElement.parentElement;
+    const pupilElement = document.getElementById(pupil.id);
     // TODO: Mark the student as signed in and update its element
     pupil['signedIn'] = modalTime.value;
     // Hide signIn and show signOut
@@ -103,14 +106,16 @@ const reportAbsent = (event) => {
 }
 
 const signOut = (event) => {
-    const btn_sign_out = event.target;
-    btn_sign_out.classList.add("hidden");
+    const pupil = getPupilById(event.target.getAttribute('data-id'));
+    const pupilElement = event.target.parentElement.parentElement;
 
-    const btn_sign_in = btn_sign_out.parentElement.querySelector(".sign-in");
-    btn_sign_in.classList.remove("hidden");
-    // TODO: Mark the student as signed out and update its element
-    // TODO: hide signOut and show signIn or whatever needs to be shown
-    // savePupils(...)
+    pupilElement.querySelector(".sign-in").classList.remove("hidden");
+    pupilElement.querySelector(".sign-out").classList.add("hidden");
+    pupilElement.querySelector(".signed-in").classList.add("hidden");
+    pupilElement.querySelector(".signed-out").classList.remove("hidden");
+    pupilElement.querySelector("time").innerHTML = "";
+    delete pupil["signedIn"];
+    savePupils(beeRoom);
 }
 
 const savePupils = (pupils) => {
@@ -155,6 +160,10 @@ const main = async () => {
     
     modalClose.addEventListener('click', toggleModal);
     confirmSignInBtn.addEventListener('click', confirmSignIn);
+    reportAbsentBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        toggleModal();
+    });
 }
 
 main();
