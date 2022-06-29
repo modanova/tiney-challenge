@@ -1,4 +1,12 @@
-// let modal = document.getElementsByClassName("modal")[0];
+const modal_signIn = document.querySelector("#modal");
+const modal_close = document.querySelector(".close");
+
+
+const openCloseSignIn = () => {
+    modal_signIn.classList.toggle('hidden');
+}
+modal_close.addEventListener('click', openCloseSignIn);
+
 // let btn = document.getElementById("submit");
 // let span = document.getElementsByClassName("close");
 
@@ -36,9 +44,12 @@ const signIn = (event) => {
     const btn_sign_in = event.target;
     btn_sign_in.classList.add("hidden");
 
+
+    // TODO: Open the confirm sign-in modal and populate all the data
+    openCloseSignIn();
+
     const btn_sign_out = btn_sign_in.parentElement.querySelector(".sign-out");
     btn_sign_out.classList.remove("hidden");
-    // TODO: Open the confirm sign-in modal and populate all the data
 }
 
 const confirmSignIn = (event) => {
